@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, GraduationCap, Mail, FileText, ChevronRight } from 'lucide-react';
 import { personalInfo } from '../data/portfolioData';
+import profileAvatar from '../assets/images/profile.jpg';
 
 interface NavbarProps {
   activeSection: string;
@@ -66,8 +67,12 @@ export const Navbar: React.FC<NavbarProps> = ({ activeSection }) => {
             onClick={(e) => handleNavClick(e, '#home')}
             className="flex items-center gap-3 group focus:outline-none focus:ring-2 focus:ring-blue-400 rounded-md p-1"
           >
-            <div className="w-10 h-10 rounded-lg bg-blue-700/80 border border-blue-500/40 flex items-center justify-center text-white shadow-sm group-hover:bg-blue-600 transition-colors">
-              <GraduationCap className="w-5 h-5 text-blue-100" />
+            <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-blue-400/60 shadow-sm group-hover:border-blue-300 transition-colors flex-shrink-0 bg-blue-900">
+              <img
+                src={profileAvatar}
+                alt={personalInfo.name}
+                className="w-full h-full object-cover object-top"
+              />
             </div>
             <div>
               <span className="block text-base sm:text-lg font-serif font-bold tracking-tight text-white group-hover:text-blue-200 transition-colors">

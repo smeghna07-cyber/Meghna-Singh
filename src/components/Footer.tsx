@@ -1,6 +1,7 @@
 import React from 'react';
 import { ArrowUp, Mail, GraduationCap, MapPin, Heart } from 'lucide-react';
 import { personalInfo } from '../data/portfolioData';
+import profileAvatar from '../assets/images/profile.jpg';
 
 export const Footer: React.FC = () => {
   const scrollToTop = () => {
@@ -20,8 +21,12 @@ export const Footer: React.FC = () => {
           {/* Brand Col (6 cols) */}
           <div className="md:col-span-6 space-y-3">
             <div className="flex items-center gap-3">
-              <div className="w-9 h-9 rounded-lg bg-blue-900 border border-blue-700 flex items-center justify-center text-white">
-                <GraduationCap className="w-5 h-5 text-blue-200" />
+              <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-blue-400/60 flex-shrink-0 bg-blue-900">
+                <img
+                  src={profileAvatar}
+                  alt={personalInfo.name}
+                  className="w-full h-full object-cover object-top"
+                />
               </div>
               <div>
                 <h4 className="text-base font-serif font-bold text-white tracking-tight">

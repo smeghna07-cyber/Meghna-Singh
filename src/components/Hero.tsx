@@ -2,8 +2,8 @@ import React from 'react';
 import { Mail, BookOpen, MapPin, Award, Stethoscope, ChevronDown, CheckCircle2, ArrowRight } from 'lucide-react';
 import { personalInfo } from '../data/portfolioData';
 
-// Generated authentic portrait
-import facultyPortrait from '../assets/images/faculty_portrait_1787375551715.jpg';
+// Authentic faculty portrait
+import facultyPortrait from '../assets/images/profile.jpg';
 
 export const Hero: React.FC = () => {
   const scrollToContact = (e: React.MouseEvent<HTMLAnchorElement>) => {
@@ -121,7 +121,7 @@ export const Hero: React.FC = () => {
               
               {/* Card Container */}
               <div className="relative bg-slate-900 rounded-2xl p-2.5 shadow-2xl border border-slate-700/80 max-w-sm sm:max-w-md">
-                <div className="relative overflow-hidden rounded-xl bg-slate-800 aspect-square w-64 sm:w-72 md:w-80">
+                <div className="relative overflow-hidden rounded-xl bg-slate-800 aspect-[4/5] w-64 sm:w-72 md:w-80">
                   <img
                     id="faculty-hero-portrait-img"
                     src={facultyPortrait}
