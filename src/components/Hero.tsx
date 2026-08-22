@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Mail, BookOpen, MapPin, Award, Stethoscope, ChevronDown, CheckCircle2, ArrowRight } from 'lucide-react';
 import { personalInfo } from '../data/portfolioData';
 
@@ -6,6 +6,14 @@ import { personalInfo } from '../data/portfolioData';
 import facultyPortrait from '../assets/images/profile.jpg';
 
 export const Hero: React.FC = () => {
+  const [imgSrc, setImgSrc] = useState<string>(personalInfo.profilePhoto || facultyPortrait);
+
+  const handleImageError = () => {
+    if (imgSrc !== personalInfo.fallbackPhotoUrl) {
+      setImgSrc(personalInfo.fallbackPhotoUrl);
+    }
+  };
+
   const scrollToContact = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
     const contactSection = document.querySelector('#contact');
@@ -124,11 +132,12 @@ export const Hero: React.FC = () => {
                 <div className="relative overflow-hidden rounded-xl bg-slate-800 aspect-[4/5] w-64 sm:w-72 md:w-80">
                   <img
                     id="faculty-hero-portrait-img"
-                    src={facultyPortrait}
+                    src={imgSrc}
                     alt="Dr. Meghna Singh - Assistant Professor of Physiotherapy"
                     className="w-full h-full object-cover object-top transition duration-500 group-hover:scale-105"
                     referrerPolicy="no-referrer"
                     loading="eager"
+                    onError={handleImageError}
                   />
                   {/* Subtle vignette */}
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent" />

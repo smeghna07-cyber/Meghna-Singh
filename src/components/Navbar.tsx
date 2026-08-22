@@ -69,9 +69,16 @@ export const Navbar: React.FC<NavbarProps> = ({ activeSection }) => {
           >
             <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-blue-400/60 shadow-sm group-hover:border-blue-300 transition-colors flex-shrink-0 bg-blue-900">
               <img
-                src={profileAvatar}
+                src={personalInfo.profilePhoto || profileAvatar}
                 alt={personalInfo.name}
                 className="w-full h-full object-cover object-top"
+                referrerPolicy="no-referrer"
+                onError={(e) => {
+                  const target = e.currentTarget;
+                  if (target.src !== personalInfo.fallbackPhotoUrl) {
+                    target.src = personalInfo.fallbackPhotoUrl;
+                  }
+                }}
               />
             </div>
             <div>

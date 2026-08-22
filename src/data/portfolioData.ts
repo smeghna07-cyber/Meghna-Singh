@@ -17,6 +17,8 @@ export const personalInfo = {
   email: 'smeghna07@gmail.com',
   tagline: 'Empowering Movement, Restoring Lives — Physiotherapy Rooted in Neurology',
   experienceYears: '3+ Years in Clinical Practice & Academia',
+  profilePhoto: '/profile.jpg',
+  fallbackPhotoUrl: 'https://i.ibb.co/xqp6ZvnL/photo.jpg',
   aboutParagraph:
     'Dr. Meghna Singh is a dedicated neuro-physiotherapist and Assistant Professor with 3 years of experience in clinical practice and academia. Her work centers on neurological rehabilitation, blending patient-focused therapy with a strong foundation in neurology and psychosomatic disorders. She is equally passionate about teaching the next generation of physiotherapists and providing compassionate, effective care to her patients, believing that recovery is both a science and a deeply human process.',
   academicPillars: [
