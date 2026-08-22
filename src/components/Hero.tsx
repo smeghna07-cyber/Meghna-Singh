@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
-import { Mail, BookOpen, MapPin, Award, Stethoscope, ChevronDown, CheckCircle2, ArrowRight } from 'lucide-react';
+import { Mail, BookOpen, MapPin, Award, Stethoscope, ChevronDown, CheckCircle2, ArrowRight, Waves, Sparkles, Activity } from 'lucide-react';
 import { personalInfo } from '../data/portfolioData';
+import GradientWave from './ui/gradient-wave';
+import VerticalBarsNoise from './ui/vertical-bars';
 
 // Authentic faculty portrait
 import facultyPortrait from '../assets/images/profile.jpg';
 
 export const Hero: React.FC = () => {
   const [imgSrc, setImgSrc] = useState<string>(personalInfo.profilePhoto || facultyPortrait);
+  const [bgMode, setBgMode] = useState<'wave' | 'neural' | 'classic'>('wave');
 
   const handleImageError = () => {
     if (imgSrc !== personalInfo.fallbackPhotoUrl) {
@@ -35,16 +38,84 @@ export const Hero: React.FC = () => {
   return (
     <section
       id="home"
-      className="relative pt-24 pb-16 md:pt-32 md:pb-24 overflow-hidden hero-gradient text-white border-b border-slate-800"
+      className="relative pt-24 pb-16 md:pt-32 md:pb-24 overflow-hidden bg-slate-950 text-white border-b border-slate-800"
     >
+      {/* Background Mode Rendering */}
+      {bgMode === 'wave' && (
+        <GradientWave
+          colors={["#030712", "#0c4a6e", "#0284c7", "#38bdf8", "#1e3a8a", "#6366f1"]}
+          className="opacity-70 pointer-events-none"
+          noiseSpeed={0.000015}
+          noiseFrequency={[0.00015, 0.0008]}
+          deform={{ incline: 0.4, noiseAmp: 240, noiseFlow: 4 }}
+        />
+      )}
+
+      {bgMode === 'neural' && (
+        <div className="absolute inset-0 z-0">
+          <VerticalBarsNoise
+            backgroundColor="#030712"
+            lineColor="#1e3a8a"
+            barColor="#38bdf8"
+            lineWidth={1}
+            animationSpeed={0.0008}
+            removeWaveLine={false}
+          />
+        </div>
+      )}
+
+      {bgMode === 'classic' && (
+        <div className="absolute inset-0 bg-gradient-to-br from-slate-950 via-blue-950/80 to-slate-900" />
+      )}
+
       {/* Subtle academic grid pattern overlay */}
-      <div className="absolute inset-0 opacity-10 pointer-events-none academic-subtle-pattern" />
+      <div className="absolute inset-0 opacity-15 pointer-events-none academic-subtle-pattern" />
 
       {/* Decorative ambient radial glow */}
-      <div className="absolute -top-32 -left-32 w-96 h-96 rounded-full bg-blue-500/10 blur-3xl pointer-events-none" />
-      <div className="absolute top-1/2 -right-32 w-96 h-96 rounded-full bg-indigo-500/10 blur-3xl pointer-events-none" />
+      <div className="absolute -top-32 -left-32 w-96 h-96 rounded-full bg-sky-500/15 blur-3xl pointer-events-none" />
+      <div className="absolute top-1/2 -right-32 w-96 h-96 rounded-full bg-blue-600/15 blur-3xl pointer-events-none" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Visual Background Theme Selector */}
+        <div className="flex justify-end mb-4">
+          <div className="inline-flex items-center gap-1 p-1 rounded-full bg-slate-900/80 backdrop-blur-md border border-slate-700/80 shadow-lg text-xs">
+            <span className="px-2 py-0.5 text-slate-400 font-medium hidden sm:inline">Theme:</span>
+            <button
+              onClick={() => setBgMode('wave')}
+              className={`flex items-center gap-1.5 px-3 py-1 rounded-full transition-all duration-200 ${
+                bgMode === 'wave'
+                  ? 'bg-sky-500 text-slate-950 font-semibold shadow-sm'
+                  : 'text-slate-300 hover:text-white hover:bg-slate-800/60'
+              }`}
+            >
+              <Waves className="w-3.5 h-3.5" />
+              <span>Gradient Wave</span>
+            </button>
+            <button
+              onClick={() => setBgMode('neural')}
+              className={`flex items-center gap-1.5 px-3 py-1 rounded-full transition-all duration-200 ${
+                bgMode === 'neural'
+                  ? 'bg-sky-500 text-slate-950 font-semibold shadow-sm'
+                  : 'text-slate-300 hover:text-white hover:bg-slate-800/60'
+              }`}
+            >
+              <Activity className="w-3.5 h-3.5" />
+              <span>Neural Bars</span>
+            </button>
+            <button
+              onClick={() => setBgMode('classic')}
+              className={`flex items-center gap-1.5 px-3 py-1 rounded-full transition-all duration-200 ${
+                bgMode === 'classic'
+                  ? 'bg-sky-500 text-slate-950 font-semibold shadow-sm'
+                  : 'text-slate-300 hover:text-white hover:bg-slate-800/60'
+              }`}
+            >
+              <Sparkles className="w-3.5 h-3.5" />
+              <span>Classic</span>
+            </button>
+          </div>
+        </div>
+
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
           
           {/* Left Column: Academic Profile & Title */}
